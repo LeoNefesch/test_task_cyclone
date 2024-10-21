@@ -9,7 +9,12 @@ def parse_text(text):
     return f"Total: {len(words)}, Unique: {len(unique_count)}, Palindrome: {count_palindromes}"
 
 
-with open("text_task_00.txt", "r", encoding="utf-8") as f:
-    btext = f.read()
+if __name__ == '__main__':
+    try:
+        with open("text_task_00.txt", "r", encoding="utf-8") as f:
+            btext = f.read()
+    except FileNotFoundError:
+        print("Файл text_task_00.txt не найден. Проверьте путь к файлу.")
+        exit(1)
 
-print(parse_text(btext))
+    print(parse_text(btext))

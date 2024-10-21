@@ -25,12 +25,18 @@ def decrypt_caesar(message, lang):
     return decrypted_message
 
 
-with open("text_task_01_caesar.txt", "r", encoding="utf-8") as f:
-    encrypted_message = f.read()
+if __name__ == "__main__":
+    try:
+        with open("text_task_01_caesar.txt", "r", encoding="utf-8") as f:
+            encrypted_message = f.read()
+    except FileNotFoundError:
+        print("Файл text_task_01_caesar.txt не найден. Проверьте путь к файлу.")
+        exit(1)
 
-input_lang = input('Введите язык шифра, rus или eng: ')
-original_message = decrypt_caesar(encrypted_message, input_lang)
-print(original_message)
-task_phrase = ''  # Вставьте сюда шифр на латинице для повторного дешифрования
-original_phrase = decrypt_caesar(task_phrase, input_lang)
-print(original_phrase)
+    input_lang = input('Введите язык шифра, rus или eng: ').strip().lower()
+    original_message = decrypt_caesar(encrypted_message, input_lang)
+    print(original_message)
+    task_phrase = ''  # Вставьте сюда шифр на латинице для повторного дешифрования
+    if task_phrase:
+        original_phrase = decrypt_caesar(task_phrase, input_lang)
+        print(original_phrase)
